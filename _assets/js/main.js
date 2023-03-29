@@ -11,7 +11,6 @@ let listaSpesa = [
     "Patate",
     "Olio",
     "Pasta",
-    "Burro",
 ];
 
 let spesa = 0;
@@ -32,4 +31,26 @@ while (spesa < listaSpesa.length) {
     `;
 }
 
-shoppingList.innerHTML = li;
+function removeItem(index) {
+    listaSpesa.splice(index, 1);
+    updateList();
+}
+
+function updateList() {
+    let li = "";
+    for (let i = 0; i < listaSpesa.length; i++) {
+        li += `
+        <li class="listItem">
+          <h1 class="nameObject">${listaSpesa[i]}</h1>
+          <div class="container_right_icon">
+            <button class="btnFunction" onclick="removeItem(${i})">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </li>
+      `;
+    }
+    shoppingList.innerHTML = li;
+}
+
+updateList();
